@@ -74,7 +74,7 @@ RegisterNetEvent('angelicxs-BankTruck:Server:HeistReward', function()
         type = Config.MoneyType
         Number = math.floor(math.random(Config.MarkedBillMinNumberAmount, Config.MarkedBillMaxNumberAmount)*math.random(Config.MarkedBillMin, Config.MarkedBillMax))
     end
-    if Config.GoldBarChance <= math.random(1,100) then
+    if math.random(1,100) <= Config.GoldBarChance then
         type = Config.GoldBarName
         Number = math.random(Config.GoldBarMin, Config.GoldBarMax)
     end
@@ -83,7 +83,7 @@ RegisterNetEvent('angelicxs-BankTruck:Server:HeistReward', function()
         if type == Config.MoneyType then
             Player.addAccountMoney(Config.MoneyType,Number)
         else
-            Player.addInventoryItem(type, Number, false, info)
+            Player.addInventoryItem(type, Number)
         end
     elseif Config.UseQBCore then
         Player = QBCore.Functions.GetPlayer(src)
