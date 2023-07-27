@@ -87,8 +87,8 @@ Config.GoldBarMax = 100						-- Maximum number of gold bars received
 Config.MarkedBillName = 'markedbills'		-- Name of marked bill item
 Config.MarkedBillMinNumberAmount = 1		-- Minimum number of marked bills received
 Config.MarkedBillMaxNumberAmount = 5		-- Maximum number of marked bills received
-Config.MarkedBillMin = 1000					-- Minimum value of marked bills
-Config.MarkedBillMax = 10000				-- Maximum value of marked bills
+Config.MarkedBillMin = 1000					-- Minimum value of marked bills (qb-core only)
+Config.MarkedBillMax = 10000				-- Maximum value of marked bills (qb-core only)
 Config.UseMoneyNotItem = true               -- If true, DOES NOT use money as an item.
 Config.MoneyType = 'cash'                   -- If Config.UseMoneyNotItem = true, what acccount the money goes into.
 
