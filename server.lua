@@ -100,7 +100,7 @@ RegisterNetEvent('angelicxs-BankTruck:Server:HeistReward', function()
             end
         end
     end
-    if chance <= Config.RareLootChance then
+    if math.random(1, 100) <= Config.RareLootChance then
         if Config.UseESX then
             Player.addInventoryItem(Config.RareLootItem, 1)
         elseif Config.UseQBCore then
