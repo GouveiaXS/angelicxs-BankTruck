@@ -33,7 +33,6 @@ Config.RequireMinimumLEO = true 			-- When on will require a minimum number of L
 Config.RequiredNumberLEO = 0 				-- Minimum number of LEO needed for robbery to start when Config.RequireMinimumLEO = true
 Config.AllowLeoRob = false                  -- If true lets LEOs start the event/rob the truck
 Config.LEOJobName = {'police', 'bcso'} 		-- Job name of law enforcement officers
-Config.Cooldown = 90						-- How long until the heist is able to be redone after activating (in minutes)
 RegisterNetEvent('angelicxs-BankTruck:PoliceAlert')
 AddEventHandler('angelicxs-BankTruck:PoliceAlert', function(coords)
     -- TriggerEvent("police:client:policeAlert", coords, "Bank Truck Robbery Alert")
