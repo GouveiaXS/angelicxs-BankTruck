@@ -102,9 +102,9 @@ RegisterNetEvent('angelicxs-BankTruck:Server:HeistReward', function()
     end
     if math.random(1, 100) <= Config.RareLootChance then
         if Config.UseESX then
-            Player.addInventoryItem(Config.RareLootItem, 1)
+            Player.addInventoryItem(Config.RareLootItem, Config.RareLootItemAmount)
         elseif Config.UseQBCore then
-            Player.Functions.AddItem(Config.RareLootItem, 1)
+            Player.Functions.AddItem(Config.RareLootItem, Config.RareLootItemAmount)
             TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[Config.RareLootItem], 'add')
             TriggerEvent('qb-log:server:CreateLog', 'bankrobbery', 'Yacht Heist', 'green', 'Rare Loot Received: '..Config.RareLootItem..'\n**Person**:\n'..GetPlayerName(src))
         end
