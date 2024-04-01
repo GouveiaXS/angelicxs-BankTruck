@@ -633,13 +633,12 @@ function GuardSpawner(time, model, weapon, vehicle, start)
         Wait(0)
     end
     for i = -1, 2 do
-        GaurdList[time][i] = CreatePed(4, hash, start.x+1, start.y+1, start.z+1, start.w, true, true)
+        GaurdList[time][i] = CreatePedInsideVehicle(vehicle, 4, hash, i, true, true)
         while not DoesEntityExist(GaurdList[time][i]) do Wait(50) end
         SetEntityAsMissionEntity(GaurdList[time][i], true, true)
         NetworkRegisterEntityAsNetworked(GaurdList[time][i])
         SetNetworkIdCanMigrate(NetworkGetNetworkIdFromEntity(GaurdList[time][i]), true)
         SetNetworkIdExistsOnAllMachines(NetworkGetNetworkIdFromEntity(GaurdList[time][i]), true)
-        TaskEnterVehicle(GaurdList[time][i], vehicle, 150, i, 2, 3, 0)
         SetPedArmour(GaurdList[time][i], Config.GuardArmour)
         GiveWeaponToPed(GaurdList[time][i], weapon, 500)
         SetPedFleeAttributes(GaurdList[time][i], 0, false)
@@ -655,17 +654,6 @@ function GuardSpawner(time, model, weapon, vehicle, start)
         SetPedCombatRange(GaurdList[time][i], 2)
         SetEntityVisible(GaurdList[time][i], true)
         SetPedKeepTask(GaurdList[time][i], true)
-        if not IsPedInVehicle(GaurdList[time][i], vehicle, true) then
-        --     TaskWarpPedIntoVehicle(GaurdList[time][i], vehicle, i)
-        end
-        Wait(10)
-        if GetPedInVehicleSeat(vehicle, i) ~= GaurdList[time][i] then
-            Wait(10)
-            TaskEnterVehicle(GaurdList[time][i], vehicle, 150, i, 2, 3, 0)
-            Wait(50)
-            TaskWarpPedIntoVehicle(GaurdList[time][i], vehicle, i)
-            Wait(10)
-        end
         if i == -1 then
             SetDriverAbility(GaurdList[time][i], 100)
             TaskVehicleDriveWander(GaurdList[time][i], vehicle, 150.0, 447)
