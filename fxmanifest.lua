@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'AngelicXS'
 description 'Bank Truck'
-version '1.3'
+version '1.4'
 
 client_script {
     'client.lua',
