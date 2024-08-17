@@ -13,7 +13,7 @@ local EPlant = {}
 local ELoot = {}
 local GaurdList = {}
 local VehicleList = {}
-
+local CooldownRemaining = 0
 
 RegisterNetEvent('angelicxs-BankTruck:Notify', function(message, type)
 	if Config.UseCustomNotify then
@@ -182,6 +182,17 @@ CreateThread(function()
     end
 end)
 
+CreateThread(function()
+    while Config.IndividualCooldown do
+        local sleep = 60000
+        if CooldownRemaining >= 0 then
+            CooldownRemaining = CooldownRemaining - 1
+            sleep = 1000
+        end
+        Wait(sleep)
+    end
+end)
+
 RegisterNetEvent('angelicxs-BankTruck:SpawnNPC',function(coords,model)
     local hash = HashGrabber(model)
     StartNPC = CreatePed(3, hash, coords.x, coords.y, (coords.z-1), coords.w, false, false)
@@ -230,6 +241,10 @@ RegisterNetEvent('angelicxs-BankTruck:RobberyCheck', function()
         TriggerEvent('angelicxs-BankTruck:Notify', Config.Lang['onjob'], Config.LangType['info'])
         return
     end
+    if CooldownRemaining > 0 then
+        TriggerEvent('angelicxs-BankTruck:Notify', Config.Lang['indCD'], Config.LangType['info'])
+        return
+    end
     local StartRobbery = true
     local hasItem = true
     TriggerEvent('angelicxs-BankTruck:Notify', Config.Lang['checking'], Config.LangType['info'])
@@ -265,6 +280,7 @@ RegisterNetEvent('angelicxs-BankTruck:RobberyCheck', function()
     end
     if hasItem then
         onjob = true
+        CooldownRemaining = Config.IndividualCDTimer
         TriggerServerEvent('angelicxs-BankTruck:Server:Guards')
         TriggerEvent('angelicxs-BankTruck:Notify', Config.Lang['startHeist'], Config.LangType['info'])
     else
