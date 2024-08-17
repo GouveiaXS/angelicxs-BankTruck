@@ -58,6 +58,8 @@ AddEventHandler('angelicxs-BankTruck:PoliceAlert', function(coords)
 end)
 
 -- Input Config
+Config.IndividualCooldown = false           -- If true puts an individual cooldown on starting the heist
+Config.IndividualCDTimer = 3600             -- How many SECONDS until the cooldown is complete
 Config.RequireStartItem = false 			-- If true requires an item to start heist 
 Config.StartItemName = 'calling_card' 		-- If Config.RequireStartItem = true, name of start item
 Config.Payphonemodels = {
@@ -157,6 +159,7 @@ Config.Lang = {
     ['truck_ping'] = 'You are receiving an unknown gps live ping.',
     ['time_limit'] = 'You were too late, the truck was safely delivered.',
     ['nocop'] = 'What? Are you a cop? I\'m not talking to any cops.',
-    ['onjob'] = "I already gave you a job!"
+    ['onjob'] = "I already gave you a job!",
+    ['indCD'] = "I will need some more time to find you a new truck to hit!",
 
 }
